@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://8rhl00wnpjof"]
+
+[ext_resource type="SpriteFrames" uid="uid://b1pkk0myw1ogw" path="res://assets/animations/door.tres" id="1_a7mu7"]
+[ext_resource type="Script" uid="uid://0rifsuydlo13" path="res://assets/scripts/objects/builds/Door.cs" id="1_hlluv"]
+[ext_resource type="Script" uid="uid://bs3nau24wp0l8" path="res://assets/scripts/components/TriggerComponent.cs" id="2_ylrt0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ylrt0"]
+size = Vector2(16, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hlluv"]
+size = Vector2(40, 42)
+
+[node name="Door" type="StaticBody2D"]
+script = ExtResource("1_hlluv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_a7mu7")
+animation = &"default_door"
+autoplay = "default_door"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_ylrt0")
+
+[node name="TriggerComponent" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_ylrt0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerComponent"]
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_hlluv")
+debug_color = Color(0.7809602, 0.0002975443, 0.7360691, 0.41960785)

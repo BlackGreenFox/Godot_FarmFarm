@@ -1,0 +1,78 @@
+[gd_scene load_steps=16 format=3 uid="uid://4xgmq1ycrpek"]
+
+[ext_resource type="SpriteFrames" uid="uid://frb7huwv3xov" path="res://assets/animations/new_sprite_frames.tres" id="1_75pvj"]
+[ext_resource type="Script" uid="uid://ceemuxvrbycad" path="res://assets/scripts/player/Player.cs" id="1_rxegu"]
+[ext_resource type="Script" uid="uid://bmx2n5ta3kqo5" path="res://assets/scripts/data/PlayerData.cs" id="2_bqvjb"]
+[ext_resource type="Script" uid="uid://c61dbxv1wqa0e" path="res://assets/scripts/player/statemachine/PlayerStateMachine.cs" id="3_bqvjb"]
+[ext_resource type="Script" uid="uid://wdraob8uxa7v" path="res://assets/scripts/player/state/PlayerIdleState.cs" id="4_swaxy"]
+[ext_resource type="Script" uid="uid://rd5jfqxsb5df" path="res://assets/scripts/player/state/PlayerMoveState.cs" id="5_p2h2o"]
+[ext_resource type="Script" uid="uid://iv16h7ukmbed" path="res://assets/scripts/core/Core.cs" id="6_gyvin"]
+[ext_resource type="Script" uid="uid://c2wfhnmw12qot" path="res://assets/scripts/player/state/PlayerAxeState.cs" id="7_p2h2o"]
+[ext_resource type="Script" uid="uid://cx8xb6wilf24g" path="res://assets/scripts/core/component/Movement.cs" id="7_s8unf"]
+[ext_resource type="Script" uid="uid://c32pl5jsa4rq6" path="res://assets/scripts/player/state/PlayerToolState.cs" id="8_gyvin"]
+[ext_resource type="Script" uid="uid://c3nos2lhs3id" path="res://assets/scripts/player/PlayerInputHandler.cs" id="8_ii37a"]
+[ext_resource type="Script" uid="uid://dbuarxmija3ry" path="res://assets/scripts/components/HitComponent.cs" id="12_gyvin"]
+
+[sub_resource type="Resource" id="Resource_swaxy"]
+script = ExtResource("2_bqvjb")
+metadata/_custom_type_script = "uid://bmx2n5ta3kqo5"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_twte4"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s8unf"]
+radius = 6.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_rxegu")
+data = SubResource("Resource_swaxy")
+currentTool = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("1_75pvj")
+animation = &"chopping_down"
+autoplay = "idle_down"
+frame = 1
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_twte4")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_bqvjb")
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("4_swaxy")
+
+[node name="MoveState" type="Node" parent="StateMachine"]
+script = ExtResource("5_p2h2o")
+
+[node name="AxeState" type="Node" parent="StateMachine" node_paths=PackedStringArray("hit_component_shape")]
+script = ExtResource("7_p2h2o")
+hit_component_shape = NodePath("../../HitComponent/CollisionShape2D")
+
+[node name="ToolState" type="Node" parent="StateMachine"]
+script = ExtResource("8_gyvin")
+
+[node name="Core" type="Node" parent="."]
+script = ExtResource("6_gyvin")
+
+[node name="Movement" type="Node" parent="Core"]
+script = ExtResource("7_s8unf")
+
+[node name="InputHandler" type="Node" parent="."]
+script = ExtResource("8_ii37a")
+
+[node name="HitComponent" type="Area2D" parent="."]
+position = Vector2(0, -8)
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("12_gyvin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitComponent"]
+position = Vector2(0, 13)
+shape = SubResource("CircleShape2D_s8unf")
+debug_color = Color(0.92157704, 0.04224567, 0.6764794, 0.41960785)

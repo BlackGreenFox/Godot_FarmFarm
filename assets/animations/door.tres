@@ -1,0 +1,84 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://b1pkk0myw1ogw"]
+
+[ext_resource type="Texture2D" uid="uid://cxi63vjfiwkfr" path="res://assets/sprites/Tilesets/Doors.png" id="1_p61l7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hr1g"]
+atlas = ExtResource("1_p61l7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gba5m"]
+atlas = ExtResource("1_p61l7")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xra6"]
+atlas = ExtResource("1_p61l7")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fub50"]
+atlas = ExtResource("1_p61l7")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ahcu"]
+atlas = ExtResource("1_p61l7")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52baq"]
+atlas = ExtResource("1_p61l7")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vprka"]
+atlas = ExtResource("1_p61l7")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3iqx"]
+atlas = ExtResource("1_p61l7")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ked1q"]
+atlas = ExtResource("1_p61l7")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hr1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gba5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xra6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fub50")
+}],
+"loop": false,
+"name": &"close_door",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ahcu")
+}],
+"loop": true,
+"name": &"default_door",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52baq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vprka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3iqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ked1q")
+}],
+"loop": false,
+"name": &"open_door",
+"speed": 8.0
+}]

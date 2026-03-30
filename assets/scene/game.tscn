@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh4deqf2vsxln"]
+
+[ext_resource type="PackedScene" uid="uid://dcduy06glafj5" path="res://assets/prefabs/tilebuilds/game_map.tscn" id="1_xdleh"]
+[ext_resource type="PackedScene" uid="uid://4xgmq1ycrpek" path="res://assets/prefabs/player/player.tscn" id="2_xurgf"]
+
+[node name="Game" type="Node2D"]
+
+[node name="TileMap" parent="." instance=ExtResource("1_xdleh")]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")
+
+[node name="Player" parent="." instance=ExtResource("2_xurgf")]
+position = Vector2(147, 215)
