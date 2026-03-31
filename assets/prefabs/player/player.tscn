@@ -17,13 +17,14 @@
 script = ExtResource("2_bqvjb")
 metadata/_custom_type_script = "uid://bmx2n5ta3kqo5"
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_twte4"]
-radius = 7.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_gyvin"]
+radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s8unf"]
 radius = 6.0
 
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 2
 script = ExtResource("1_rxegu")
 data = SubResource("Resource_swaxy")
@@ -38,8 +39,8 @@ frame = 1
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
-shape = SubResource("CircleShape2D_twte4")
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_gyvin")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_bqvjb")

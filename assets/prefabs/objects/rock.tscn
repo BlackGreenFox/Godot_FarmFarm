@@ -1,30 +1,42 @@
-[gd_scene load_steps=7 format=3 uid="uid://dawylkx7kq7xy"]
+[gd_scene load_steps=10 format=3 uid="uid://dawylkx7kq7xy"]
 
+[ext_resource type="Shader" uid="uid://bsnq3v5qxf8r6" path="res://assets/shaders/rock.gdshader" id="1_5mvtu"]
 [ext_resource type="Texture2D" uid="uid://fnm7bcphx0kn" path="res://assets/sprites/Objects/Basic_Grass_Biom_things.png" id="1_agtgh"]
 [ext_resource type="PackedScene" uid="uid://dlt72ljnh55tm" path="res://assets/prefabs/components/damage_component.tscn" id="2_e1es5"]
 [ext_resource type="Script" uid="uid://d28ei5qnclv5p" path="res://assets/scripts/objects/nature/Rock.cs" id="2_sp7s5"]
+[ext_resource type="PackedScene" uid="uid://hpgmgy46cqas" path="res://assets/prefabs/collectible/rock.tscn" id="4_5mvtu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v6l8j"]
+resource_local_to_scene = true
+shader = ExtResource("1_5mvtu")
+shader_parameter/shake_intensity = 0.0
+shader_parameter/shake_speed = 20.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sp7s5"]
 atlas = ExtResource("1_agtgh")
 region = Rect2(127, 16, 18, 16)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_v6l8j"]
-radius = 6.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mvtu"]
+size = Vector2(13.5, 7)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5mvtu"]
 radius = 8.0
 
-[node name="rock" type="Sprite2D"]
+[node name="Rock" type="Sprite2D"]
+material = SubResource("ShaderMaterial_v6l8j")
 texture = SubResource("AtlasTexture_sp7s5")
 script = ExtResource("2_sp7s5")
 ToolNeed = 2
+DropItems = Array[PackedScene]([ExtResource("4_5mvtu")])
 
 [node name="RockBody" type="StaticBody2D" parent="."]
 
 [node name="CollisionRock" type="CollisionShape2D" parent="RockBody"]
-shape = SubResource("CircleShape2D_v6l8j")
+position = Vector2(0.25, 2)
+shape = SubResource("RectangleShape2D_5mvtu")
 
 [node name="DamageComponent" parent="." instance=ExtResource("2_e1es5")]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageComponent"]
 shape = SubResource("CircleShape2D_5mvtu")

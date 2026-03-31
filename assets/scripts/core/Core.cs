@@ -3,13 +3,13 @@ using System;
 
 public partial class Core : Node
 {
-    private Player _player;
+    private Entity _entity;
     private Movement _movement;
 
-    public Player Player
+    public Entity Entity
     {
-        get => GenericNotImplementedError<Player>.TryGet(_player, "No _entity Component");
-        private set => _player = value;
+        get => GenericNotImplementedError<Entity>.TryGet(_entity, "No _entity Component");
+        private set => _entity = value;
     }
 
     public Movement Movement
@@ -20,7 +20,7 @@ public partial class Core : Node
 
     public override void _EnterTree()
     {
-        Player = GetParent() as Player;
+        Entity = GetParent() as Entity;
         Movement = GetComponent<Movement>();
     }
 

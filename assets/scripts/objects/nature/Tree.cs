@@ -1,10 +1,13 @@
 using Godot;
-using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
 
 public partial class Tree : Sprite2D, IDamage
 {
     [Export] public float Health = 30f;
     [Export] public Tools ToolNeed = Tools.Axe;
+    [Export] public PackedScene[] DropItems;
+
 
     public async void TakeDamage(float damage)
     {
@@ -20,6 +23,7 @@ public partial class Tree : Sprite2D, IDamage
         if (Health <= 0)
         {
             await ToSignal(GetTree().CreateTimer(0.5f), SceneTreeTimer.SignalName.Timeout);
+            DropItemsOnScene();
             QueueFree();
             return;
         }
@@ -33,8 +37,23 @@ public partial class Tree : Sprite2D, IDamage
             await ToSignal(GetTree().CreateTimer(0.4f), SceneTreeTimer.SignalName.Timeout);
             material.SetShaderParameter("shake_intensity", 0.0f);
         }
+    }
 
+    public void DropItemsOnScene()
+    {
+        if (DropItems == null || DropItems.Length == 0)
+        {
+            GD.Print("DropItems масив порожній!");
+            return;
+        }
 
+        foreach (var scene in DropItems)
+        {
+            if (scene == null) continue;
 
+            var instance = scene.Instantiate<Node2D>();
+            GetParent().AddChild(instance);
+            instance.GlobalPosition = this.GlobalPosition;
+        }
     }
 }

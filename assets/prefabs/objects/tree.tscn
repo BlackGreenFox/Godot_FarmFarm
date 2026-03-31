@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c63smuelm5rr4"]
+[gd_scene load_steps=10 format=3 uid="uid://c63smuelm5rr4"]
 
 [ext_resource type="Texture2D" uid="uid://mpg8hhikpudc" path="res://assets/sprites/Objects/Basic Grass Biom things 1.png" id="1_ds0u6"]
 [ext_resource type="Shader" uid="uid://b1dqmp4u23sfu" path="res://assets/shaders/tree.gdshader" id="1_xmwj4"]
 [ext_resource type="Script" uid="uid://cp4mw2fdjo6v2" path="res://assets/scripts/objects/nature/Tree.cs" id="2_a4se8"]
 [ext_resource type="Script" uid="uid://ciymfskbl0x14" path="res://assets/scripts/components/DamageComponent.cs" id="3_xmwj4"]
+[ext_resource type="PackedScene" uid="uid://e032h2mxwa1u" path="res://assets/prefabs/collectible/log.tscn" id="4_1xmrb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1xmrb"]
 resource_local_to_scene = true
@@ -26,6 +27,7 @@ material = SubResource("ShaderMaterial_1xmrb")
 position = Vector2(1, -16)
 texture = SubResource("AtlasTexture_pt553")
 script = ExtResource("2_a4se8")
+DropItems = Array[PackedScene]([ExtResource("4_1xmrb")])
 
 [node name="TreeBody" type="StaticBody2D" parent="."]
 

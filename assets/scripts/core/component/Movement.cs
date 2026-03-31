@@ -16,7 +16,7 @@ public partial class Movement : CoreComponent
     {
         base._Ready();
 
-        CharacterBody = core.Player;
+        CharacterBody = core.Entity;
 
         FacingDirection = Vector2.Down;
         CanSetVelocity = true;
